@@ -92,14 +92,12 @@ const app = {
 
     render() {
         this.knot.rotation.x += .07
-        this.knot.rotation.y += .02
+        this.knot.rotation.y += .09
         this.knot.rotation.z += .035
         this.knot1.rotation.x -= .035
-        this.knot1.rotation.y -= .06
+        this.knot1.rotation.y -= .05
         this.knot1.rotation.z -= .02
         this.knot2.rotation.y += .035
-
-
 
         this.renderer.render( this.scene, this.camera )
         window.requestAnimationFrame( this.render )
@@ -107,4 +105,3 @@ const app = {
 }
 
 window.onload = ()=> app.init()
-
