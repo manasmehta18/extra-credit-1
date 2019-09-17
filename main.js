@@ -75,7 +75,7 @@ const app = {
         line.material.transparent = true;
 
         const knotgeo = new THREE.TorusKnotBufferGeometry( 30, 3, 10, 16 );
-        const mat     = new THREE.MeshPhongMaterial({ color:'dodgerblue', shininess:2000 })
+        const mat     = new THREE.MeshNormalMaterial()
         const knot    = new THREE.Mesh( knotgeo, mat )
 
         this.scene.add( line )
