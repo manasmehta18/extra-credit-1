@@ -2,6 +2,9 @@ import * as THREE from './build/three.module.js';
 
 const app = {
     init() {
+
+        let i = 0;
+
         this.scene = new THREE.Scene()
 
         this.scene.background = new THREE.Color('black');;
@@ -22,7 +25,7 @@ const app = {
 
         // ...the rare and elusive hard binding appears! but why?
         this.render = this.render.bind( this )
-        this.render()
+        this.render(i)
 
 
 
@@ -90,14 +93,24 @@ const app = {
         return knot
     },
 
-    render() {
-        this.knot.rotation.x += .07
+    render(i) {
+        i++;
+        this.knot.rotation.x += .06
         this.knot.rotation.y += .09
-        this.knot.rotation.z += .035
-        this.knot1.rotation.x -= .035
-        this.knot1.rotation.y -= .05
-        this.knot1.rotation.z -= .02
-        this.knot2.rotation.y += .035
+        this.knot.rotation.z += .03
+        this.knot1.rotation.x -= .015
+        this.knot1.rotation.y -= .03
+        this.knot1.rotation.z -= .01
+        this.knot2.rotation.y += .15
+        if(i > 5000 && i < 12000) {
+            this.knot2.scale.x += .01
+            this.knot2.scale.y += .01
+            this.knot2.scale.z += .01
+        } else if(i > 12000 && i < 19000) {
+            this.knot2.scale.x -= .01
+            this.knot2.scale.y -= .01
+            this.knot2.scale.z -= .01
+        }
 
         this.renderer.render( this.scene, this.camera )
         window.requestAnimationFrame( this.render )
