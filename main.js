@@ -55,7 +55,7 @@ const app = {
 
     createKnot() {
 
-        const knotgeo = new THREE.TorusKnotBufferGeometry( 10, 3, 10, 16 );
+        const knotgeo = new THREE.TorusKnotBufferGeometry( 10, 3, 500, 16 );
         const mat     = new THREE.MeshPhongMaterial({ color:'orangered', shininess:2000 })
         const knot    = new THREE.Mesh( knotgeo, mat )
 
@@ -74,9 +74,12 @@ const app = {
         line.material.opacity = 0.25;
         line.material.transparent = true;
 
-        const knotgeo = new THREE.TorusKnotBufferGeometry( 30, 3, 10, 16 );
+        const knotgeo = new THREE.TorusKnotBufferGeometry( 50, 3, 10, 16 );
         const mat     = new THREE.MeshNormalMaterial()
         const knot    = new THREE.Mesh( knotgeo, mat )
+
+        knot.material.opacity = 0.6;
+        knot.material.transparent = true;
 
         this.scene.add( line )
         this.scene.add( knot )
@@ -88,6 +91,9 @@ const app = {
         const knotgeo = new THREE.IcosahedronBufferGeometry(4)
         const mat     = new THREE.MeshPhongMaterial({ color:'green', shininess:2000 })
         const knot    = new THREE.Mesh( knotgeo, mat )
+
+        knot.material.opacity = 0.8;
+        knot.material.transparent = true;
 
         this.scene.add( knot )
         return knot
@@ -101,7 +107,7 @@ const app = {
         this.knot1.rotation.x -= .015
         this.knot1.rotation.y -= .03
         this.knot1.rotation.z -= .01
-        this.knot2.rotation.y += .15
+        this.knot2.rotation.y += .12
         if(i > 5000 && i < 12000) {
             this.knot2.scale.x += .01
             this.knot2.scale.y += .01
@@ -112,6 +118,7 @@ const app = {
             this.knot2.scale.z -= .01
         }
 
+        this.knot1.material.opacity = 1 + Math.sin(new Date().getTime() * .0025);
         this.renderer.render( this.scene, this.camera )
         window.requestAnimationFrame( this.render )
     }
